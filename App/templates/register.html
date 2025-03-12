@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register Page 2
+{% endblock %}
+
+{% block content %}
+<script>// Hide side bar
+    leftNavbarState(false);
+</script>
+
+<div class="centered-container">
+    
+    <div class="register-main-container">
+
+        <div class="register-left-container">
+            <h1>Let's Create an Account !</h1>
+            <p>Already registered ? <span class="btn-url" data-url="{{ url_for('login_page') }}">Login In !</span></p>
+        </div>
+        <form class="register-form" id="registerForm">
+
+            <h2 style="text-align: center; margin-bottom: 20px;">Register</h2>
+
+            <div id="input-container-username" class="floating-input-container" style="background-color: var(--bg-secondary);">
+                <input class="floating-input" type="text" name="username">
+                <label class="floating-label">Username</label>
+                <label class="floating-label-info"></label>
+            </div>
+
+            <div id="input-container-password" class="floating-input-container" style="background-color: var(--bg-secondary);">
+                <input class="floating-input" type="password" name="password1">
+                <label class="floating-label">Password</label>
+                <label class="floating-label-info"></label>
+            </div>
+
+
+
+            <div id="input-container-password2" class="floating-input-container" style="background-color: var(--bg-secondary);">
+                <input class="floating-input" type="password" name="password2">
+                <label class="floating-label">Confirm Password</label>
+                <label class="floating-label-info"></label>
+            </div>
+            
+    
+            <input class="btn-outline-dark" type="submit" id="registerSubmit" value="Create Account !" style="margin-top: 20px;">
+        </form>
+
+    </div>
+    
+</div>
+
+<script src="{{ url_for('static', filename='js/log_reg.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <script defer src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/functions.js') }}"></script>
+    </head>
+
+    <header>
+        {% if current_user.is_authenticated %}
+        <svg class="btn-open-sidebar" id="btn-open-sidebar" onclick="handleSideBar()" xmlns="http://www.w3.org/2000/svg"  width="28"  height="28"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
+        {% endif %}
+        <nav class="navbar-top {% if current_user.is_authenticated %}loggedin{% endif %}" id="navbarTop">
+            
+            
+            <h1 id="main-logo" class="btn-url" data-url="{% if current_user.is_authenticated %} {{ url_for('tasks_page') }} {% else %} {{ url_for('home_page') }} {% endif %}">Task Manager </h1>
+           
+            <h2 style="padding-left: 10px; font-size: 1rem; color:var(--bg-dark-tertiary) ; font-weight: 400;">{% block page %}{% endblock %}</h2>
+            <ul class="text-dark">
+
+                {% if current_user.is_authenticated %}
+                <div class="dropdown">
+                    <div onclick="dropdownHandler(event)" class="user-btn">
+                        <button>{{ current_user.username[0] }}</button>
+                    </div>
+                    
+                    <ul class="dropdown-menu d-none" id="dropdown-menu-user">
+                        <li class="btn-url" data-url="{{ url_for('logout') }}">
+                            <svg style="margin-right: 5px;"  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" /><path d="M15 12h-12l3 -3" /><path d="M6 15l-3 -3" /></svg>
+                            Logout
+                        </li>
+                    </ul>
+                </div>
+                
+                
+                {% else %}
+                <button class="btn-url" id="nav-register" style="margin-left: auto;" data-url= "{{ url_for('register_page') }}">Register</button>
+                <button class="btn-url" id="nav-login" data-url="{{ url_for('login_page') }}">Login</button>
+                {% endif %}
+                <p></p>
+            </ul>
+        </nav>
+
+        {% if current_user.is_authenticated %}
+        <nav class="navbar-left {% if current_user.is_authenticated %}loggedin{% endif %}" id="navbarLeft">
+            <img src="{{ url_for('static', filename='images/icon_task_manager.png') }}" class="icon-task-manager">
+            <h1 class="text-light text-center" style="margin-bottom: 50px;"></h1>
+
+            <div class="navbar-left-items text-md text-light">
+                
+                
+                <button class="nav-left-item btn-url" data-url="{{ url_for('tasks_page') }}">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="30"  height="30"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
+                    <p>Tasks</p>
+                </button>
+
+                <button class="nav-left-item btn-url" data-url="{{ url_for('categories_page') }}">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="30"  height="30"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-category-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 4h6v6h-6z" /><path d="M4 14h6v6h-6z" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M7 7m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
+                    <p>Categories</p>
+                </button>
+                
+            </div>
+        </nav>
+        {% endif %}
+    </header>
+
+    <body>
+        <div class="hide-screen" onclick="hideSideBar()" id="hide-screen"></div>
+        <div class="main-container {% if current_user.is_authenticated %}loggedin{% endif %}" id="main-content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        
+
+    </body>
+</html>

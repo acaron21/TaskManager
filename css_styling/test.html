@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body style="height: 100vh;">
+        <div class="centered-container" style="display: flex; flex-direction: column;">
+
+
+
+            <div id="input1" class="floating-input-container" style="background-color: var(--bg-secondary);">
+                <input class="floating-input" type="password" name="password">
+                <label class="floating-label">Password</label>
+                <label class="floating-info-label">There is an error</label>
+            </div>
+            <button onclick="seterror()">Set error</button>
+            <button onclick="rmerror()">Remove error</button>
+
+
+
+        </div>
+
+        <script>
+            // FORM INPUT FLOATING ANIMATION
+function reloadFloatingLabels(){
+    let floatingInputs = document.querySelectorAll('.floating-input-container');
+    if(floatingInputs.length > 0){
+        console.log("Yes");
+
+        floatingInputs.forEach(parent =>{
+            // get the input
+            let input = parent.querySelector('.floating-input');
+
+            // get the floating labe
+            let floatingLabel = parent.querySelector('.floating-label');
+
+
+            //change floating label background
+            floatingLabel.style.backgroundColor = parent.style.backgroundColor;
+
+            // Apply events
+            input.addEventListener("focus", ()=>{
+                // Enter input while input is empty
+                if(input.value === ""){floatingLabel.classList.add("floating-label-move", "floating-label-top");}
+                
+                // Enter input while input is not empty
+                else{floatingLabel.classList.add("floating-label-top");}
+            })
+
+            input.addEventListener("blur", ()=>{
+                // Enter input while input is empty
+                if(input.value === ""){floatingLabel.classList.remove("floating-label-move", "floating-label-top");}
+                
+                // Enter input while input is not empty
+                else{floatingLabel.classList.remove("floating-label-top");}
+            })
+        })
+    }
+}
+
+// Change error label
+function setInputError(message, input_container_id){
+    
+    let inputContainer = document.getElementById(input_container_id);
+
+    if(inputContainer){
+        // set label visible
+        inputContainer.querySelector('.floating-info-label').style.display = "block";
+        // set message
+        inputContainer.querySelector('.floating-info-label').textContent = message;
+        // set border color to red
+        inputContainer.querySelector('.floating-input').classList.add('floating-input-error');
+        // set floating label to red
+        inputContainer.querySelector('.floating-label').classList.add('floating-label-error');
+    }
+    
+
+}
+
+function removeInputError(input_container_id){
+    // set label visible
+    let inputContainer = document.getElementById(input_container_id);
+
+    if(inputContainer){
+        // set label invisible
+        inputContainer.querySelector('.floating-info-label').style.display = "none";
+        // set border color to normal
+        inputContainer.querySelector('.floating-input').classList.remove('floating-input-error');
+        // set floating label to normal
+        inputContainer.querySelector('.floating-label').classList.remove('floating-label-error');
+    }
+}
+
+function seterror(){
+    setInputError("caca boudin","input1");
+}
+
+function rmerror(){
+    removeInputError("input1");
+}
+
+reloadFloatingLabels();
+        </script>
+    </body>
+    
+</html>

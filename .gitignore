@@ -1,0 +1,5 @@
+taskmanager
+migrations
+__pycache__
+.vscode
+create_db.py

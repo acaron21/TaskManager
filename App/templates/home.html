@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+
+
+{% block content %}
+<script> // hide side bar
+   leftNavbarState(false); 
+</script>
+<div class="centered-container home-body" style="padding: 10px;">
+    <h1>Welcom to the Tasks Manager !</h1>
+    <p>This application is used as a reminder to handle your tasks and save your time ! </p>
+    <button class="btn-outline-dark text-lg btn-url" style="margin-top: 20px;" data-url="{{ url_for('register_page') }}">Get Started Now !</button>
+</div>
+{% endblock %}

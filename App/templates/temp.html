@@ -1,0 +1,38 @@
+<div class="container-fluid text-bg-dark main-content d-flex justify-content-center align-items-md-center " style="background-color: #2b2d31;">
+
+    <div class="container d-flex flex-column flex-md-row sm-shadow sm-rounded align-items-center justify-content-end" style="max-width: 700px; background-color: #313338;">
+
+        <div class="containeur d-flex flex-column flex-fill align-items-center">
+            <p class="text-center">Logo</p>
+            <p class="text-center">Tasks Manager</p>
+        </div>
+
+        <div class="">
+                <form method="post" class="gap-4" novalidate>
+
+                    {{ form.hidden_tag() }}
+    
+                    <h1 class="text-center mt-3">Login</h1>
+    
+                    <br>
+    
+                    <div class="form-floating m-3 mt-0">
+                        {{ form.username(class="form-control", id=username, placeholder="Username") }}
+                        <label for="username" class="form-label">Username</label>
+                    </div>
+    
+                    <div class="form-floating m-3">
+                        {{ form.password(class="form-control", id=password, placeholder="Password") }}
+                        <label for="password" class="form-label">Password</label>
+                    </div>
+                    <div class="text-end m-4">
+                        {{ form.submit(class="btn btn-primary shadow") }}
+                    </div>
+                    
+    
+    
+                </form>
+        </div>
+    </div>
+
+</div>

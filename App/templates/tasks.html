@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Tasks
+{% endblock %}
+
+{% block page %}
+> Tasks
+{% endblock %}
+
+{% block content %}
+<div class="task-main-container">
+
+    <div class="task-page-container">
+        <button onclick="createNewTaskModal()" id="addTask" class="btn-outline-dark" style="font-size: 1.5em;">New Task</button>
+
+<!-- 
+        <div class="modal-header">
+            <svg class="modal-arrow"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" /></svg>
+            <h2>New task</h2>
+            <svg class="modal-cross"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+        </div>
+
+        <div class="modal-body">
+            <label for="">Name</label>
+            <input type="text">
+
+            <label for="">Description</label>
+            <textarea name="description" id="task-description"></textarea>
+        </div>
+
+        <div class="modal-footer">
+            <input type="submit" name="" id="" class="btn-outline-dark" value="Create !">
+        </div> -->
+
+
+        
+        
+        
+        <table id="task-table">
+            <thead>
+
+            </thead>
+
+            <tbody id="body-task-table">
+                
+            </tbody>
+        </table>
+    </div>
+
+    
+</div>
+
+<script defer src="{{ url_for('static', filename='js/tasks.js') }}"></script>
+{% endblock %}
